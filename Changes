@@ -1,5 +1,9 @@
 Revision history for Perl extension JavaScript::Minifier.
 
+1.07  2013-01-19
+    - Fixed license issue (RT#92298)
+    - Converted to Dist::Zilla for packaging
+
 1.06  2014-01-18
     - Zoffix Znet took over maintenance
     - Applied user-submitted bug patches
