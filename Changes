@@ -1,5 +1,8 @@
 Revision history for Perl extension JavaScript::Minifier.
 
+1.08  2013-01-19
+    - Fixed RT#76800 (preserve "\n" at the end of file)
+
 1.07  2013-01-19
     - Fixed license issue (RT#92298)
     - Converted to Dist::Zilla for packaging
