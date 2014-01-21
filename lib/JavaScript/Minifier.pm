@@ -7,7 +7,7 @@ require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw(minify);
 
-our $VERSION = '1.06';
+our $VERSION = '1.08';
 
 #return true if the character is allowed in identifier.
 sub isAlphanum {
