@@ -1,10 +1,8 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as `perl JavaScript-Minifier.t'
-
+#!perl -T
 #########################
 
-use Test::More tests => 17;
-BEGIN { use_ok('JavaScript::Minifier', qw(minify)) };
+use Test::More tests => 19;
+use JavaScript::Minifier qw(minify);
 
 #########################
 
@@ -45,24 +43,25 @@ sub minTest {
   close(GOTFILE);
 }
 
-BEGIN {
-  
-  minTest('s2', 'testing s2');    # missing semi-colons
-  minTest('s3', 'testing s3');    # //@
-  minTest('s4', 'testing s4');    # /*@*/
-  minTest('s5', 'testing s5');    # //
-  minTest('s6', 'testing s6');    # /**/
-  minTest('s7', 'testing s7');    # blocks of comments
-  minTest('s8', 'testing s8');    # + + - -
-  minTest('s9', 'testing s9');    # alphanum
-  minTest('s10', 'testing s10');  # }])
-  minTest('s11', 'testing s11');  # string and regexp literals
-  minTest('s12', 'testing s12');  # other characters
-  minTest('s13', 'testing s13');  # comment at start
-  minTest('s14', 'testing s14');  # slash following square bracket is division not RegExp
+minTest('s2', 'testing s2');    # missing semi-colons
+minTest('s3', 'testing s3');    # //@
+minTest('s4', 'testing s4');    # /*@*/
+minTest('s5', 'testing s5');    # //
+minTest('s6', 'testing s6');    # /**/
+minTest('s7', 'testing s7');    # blocks of comments
+minTest('s8', 'testing s8');    # + + - -
+minTest('s9', 'testing s9');    # alphanum
+minTest('s10', 'testing s10');  # }])
+minTest('s11', 'testing s11');  # string and regexp literals
+minTest('s12', 'testing s12');  # other characters
+minTest('s13', 'testing s13');  # comment at start
+minTest('s14', 'testing s14');  # slash following square bracket
+                                # ... is division not RegExp
+minTest('s15', 'testing s15');  # newline-at-end-of-file
+                                # -> not there so don't add
+minTest('s16', 'testing s16');  # newline-at-end-of-file
+                                # -> it's there so leave it alone
 
-  is(minify(input => 'var x = 2;'), 'var x=2;', 'string literal input and ouput');
-  is(minify(input => "var x = 2;\n;;;alert('hi');\nvar x = 2;", stripDebug => 1), 'var x=2;var x=2;', 'scriptDebug option');
-  is(minify(input => 'var x = 2;', copyright => "BSD"), '/* BSD */var x=2;', 'copyright option');
-
-}
+is(minify(input => 'var x = 2;'), 'var x=2;', 'string literal input and ouput');
+is(minify(input => "var x = 2;\n;;;alert('hi');\nvar x = 2;", stripDebug => 1), 'var x=2;var x=2;', 'scriptDebug option');
+is(minify(input => 'var x = 2;', copyright => "BSD"), '/* BSD */var x=2;', 'copyright option');

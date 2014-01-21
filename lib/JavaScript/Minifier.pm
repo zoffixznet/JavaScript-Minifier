@@ -336,6 +336,10 @@ sub minify {
     }
   }
   
+  if ( $s->{input} =~ /\n\z/ ) {
+    _put($s, "\n");
+  }
+  
   if (!defined($s->{outfile})) {
     return $s->{output};
   }
