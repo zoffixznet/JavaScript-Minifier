@@ -4,6 +4,10 @@
 use Test::More tests => 19;
 use JavaScript::Minifier qw(minify);
 
+### This is mainly to align the tests to 's' scripts, because s1 is
+### somehow missing
+can_ok('JavaScript::Minifier', 'minify');
+
 #########################
 
 sub filesMatch {
@@ -38,29 +42,29 @@ sub minTest {
 
   open(EXPECTEDFILE, 't/scripts/' . $filename . '-expected.js') or die("couldn't open file");
   open(GOTFILE, 't/scripts/' . $filename . '-got.js') or die("couldn't open file");
-    ok(filesMatch(GOTFILE, EXPECTEDFILE));
+    ok(filesMatch(GOTFILE, EXPECTEDFILE), 'testing ' . $filename);
   close(EXPECTEDFILE);
   close(GOTFILE);
 }
 
-minTest('s2', 'testing s2');    # missing semi-colons
-minTest('s3', 'testing s3');    # //@
-minTest('s4', 'testing s4');    # /*@*/
-minTest('s5', 'testing s5');    # //
-minTest('s6', 'testing s6');    # /**/
-minTest('s7', 'testing s7');    # blocks of comments
-minTest('s8', 'testing s8');    # + + - -
-minTest('s9', 'testing s9');    # alphanum
-minTest('s10', 'testing s10');  # }])
-minTest('s11', 'testing s11');  # string and regexp literals
-minTest('s12', 'testing s12');  # other characters
-minTest('s13', 'testing s13');  # comment at start
-minTest('s14', 'testing s14');  # slash following square bracket
-                                # ... is division not RegExp
-minTest('s15', 'testing s15');  # newline-at-end-of-file
-                                # -> not there so don't add
-minTest('s16', 'testing s16');  # newline-at-end-of-file
-                                # -> it's there so leave it alone
+minTest('s2');    # missing semi-colons
+minTest('s3');    # //@
+minTest('s4');    # /*@*/
+minTest('s5');    # //
+minTest('s6');    # /**/
+minTest('s7');    # blocks of comments
+minTest('s8');    # + + - -
+minTest('s9');    # alphanum
+minTest('s10');  # }])
+minTest('s11');  # string and regexp literals
+minTest('s12');  # other characters
+minTest('s13');  # comment at start
+minTest('s14');  # slash following square bracket
+                 # ... is division not RegExp
+minTest('s15');  # newline-at-end-of-file
+                 # -> not there so don't add
+minTest('s16');  # newline-at-end-of-file
+                 # -> it's there so leave it alone
 
 is(minify(input => 'var x = 2;'), 'var x=2;', 'string literal input and ouput');
 is(minify(input => "var x = 2;\n;;;alert('hi');\nvar x = 2;", stripDebug => 1), 'var x=2;var x=2;', 'scriptDebug option');
