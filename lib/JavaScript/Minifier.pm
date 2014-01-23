@@ -7,7 +7,7 @@ require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw(minify);
 
-our $VERSION = '1.08';
+our $VERSION = '1.09';
 
 #return true if the character is allowed in identifier.
 sub isAlphanum {
@@ -401,9 +401,16 @@ Exported by default: C<minifiy()>
 =head1 SEE ALSO
 
 This module is inspired by Douglas Crockford's JSMin:
-http://www.crockford.com/javascript/jsmin.html
+L<http://www.crockford.com/javascript/jsmin.html>
 
-You may also be interested in the CSS::Minifier module also available on CPAN.
+You may also be interested in the L<CSS::Minifier> module also
+available on CPAN.
+
+=head1 REPOSITORY
+
+You can obtain the latest source code and submit bug reports
+on the github repository for this module:
+L<https://github.com/zoffixznet/JavaScript-Minifier>
 
 =head1 MAINTAINER
 

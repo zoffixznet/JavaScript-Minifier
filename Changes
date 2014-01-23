@@ -1,5 +1,8 @@
 Revision history for Perl extension JavaScript::Minifier.
 
+1.09  2013-01-22
+    - Made some changes to dzil plugins and added git repos for this module
+
 1.08  2013-01-19
     - Fixed RT#76800 (preserve "\n" at the end of file)
 
