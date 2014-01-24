@@ -7,7 +7,7 @@ require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw(minify);
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 #return true if the character is allowed in identifier.
 sub isAlphanum {
@@ -43,7 +43,7 @@ sub isPostfix {
 
 sub _get {
   my $s = shift;
-  
+
   if ($s->{inputType} eq 'file') {
     my $char = getc($s->{input});
     $s->{last_read_char} = $char
@@ -89,7 +89,7 @@ sub _put {
 sub action1 {
   my $s = shift;
   if (!isWhitespace($s->{a})) {
-    $s->{lastnws} = $s->{a};    
+    $s->{lastnws} = $s->{a};
   }
   $s->{last} = $s->{a};
   action2($s);
@@ -136,8 +136,8 @@ sub putLiteral {
   action1($s);
   do {
     while (defined($s->{a}) && $s->{a} eq '\\') { # escape character only escapes only the next one character
-      action1($s);       
-      action1($s);       
+      action1($s);
+      action1($s);
     }
     action1($s);
   } until ($s->{last} eq $delimiter || !defined($s->{a}));
@@ -232,11 +232,11 @@ sub minify {
   my $ccFlag; # marks if a comment is an Internet Explorer conditional comment and should be printed to output
 
   while (defined($s->{a})) { # on this line $s->{a} should always be a non-whitespace character or undef (i.e. end of file)
-    
+
     if (isWhitespace($s->{a})) { # check that this program is running correctly
       die 'minifier bug: minify while loop starting with whitespace, stopped';
     }
-    
+
     # Each branch handles trailing whitespace and ensures $s->{a} is on non-whitespace or undef when branch finishes
     if ($s->{a} eq '/') { # a division, comment, or regexp literal
       if (defined($s->{b}) && $s->{b} eq '/') { # slash-slash comment
@@ -253,7 +253,7 @@ sub minify {
             preserveEndspace($s);
           }
           else {
-            skipWhitespace($s);            
+            skipWhitespace($s);
           }
         }
       }
@@ -273,7 +273,7 @@ sub minify {
             action3($s); # the *
             $s->{a} = ' ';  # the /
             collapseWhitespace($s);
-            if (defined($s->{last}) && defined($s->{b}) && 
+            if (defined($s->{last}) && defined($s->{b}) &&
                 ((isAlphanum($s->{last}) && (isAlphanum($s->{b})||$s->{b} eq '.')) ||
                  ($s->{last} eq '+' && $s->{b} eq '+') || ($s->{last} eq '-' && $s->{b} eq '-'))) { # for a situation like 5-/**/-2 or a/**/a
               # When entering this block $s->{a} is whitespace.
@@ -341,15 +341,15 @@ sub minify {
       skipWhitespace($s);
     }
   }
-  
+
   if ( $s->{last_read_char} =~ /\n/ ) {
     _put($s, "\n");
   }
-  
+
   if (!defined($s->{outfile})) {
     return $s->{output};
   }
-  
+
 } # minify()
 
 1;
@@ -375,7 +375,7 @@ To minify a JavaScript file and have the output written directly to another file
 To minify a JavaScript string literal. Note that by omitting the outfile parameter a the minified code is returned as a string.
 
   my minifiedJavaScript = minify(input => 'var x = 2;');
-  
+
 To include a copyright comment at the top of the minified code.
 
   minify(input => 'var x = 2;', copyright => 'BSD License');
