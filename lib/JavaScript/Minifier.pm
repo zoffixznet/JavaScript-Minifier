@@ -3,11 +3,11 @@ package JavaScript::Minifier;
 use strict;
 use warnings;
 
+# VERSION
+
 require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw(minify);
-
-our $VERSION = '1.10';
 
 #return true if the character is allowed in identifier.
 sub isAlphanum {
@@ -357,6 +357,8 @@ __END__
 
 =encoding utf8
 
+=for stopwords Crockford ECMAScript JSMin stripDebug
+
 =head1 NAME
 
 JavaScript::Minifier - Perl extension for minifying JavaScript code
@@ -384,7 +386,7 @@ To treat ';;;' as '//' so that debugging code can be removed. This is a common J
 
   minify(input => 'var x = 2;', stripDebug => 1);
 
-The "input" parameter is manditory. The "output", "copyright", and "stripDebug" parameters are optional and can be used in any combination.
+The "input" parameter is mandatory. The "output", "copyright", and "stripDebug" parameters are optional and can be used in any combination.
 
 =head1 DESCRIPTION
 

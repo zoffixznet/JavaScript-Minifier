@@ -1,5 +1,8 @@
 Revision history for Perl extension JavaScript::Minifier.
 
+1.11  2014-01-30
+    - Added my dzil author plugin bundle and fixed up some packaging issues
+
 1.10  2014-01-22
     - Added missing test prereqs
     - Fixed up wrong year in the latest versions in the change log

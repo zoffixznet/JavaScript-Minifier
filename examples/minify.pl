@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+# VERSION
+
 use lib qw{lib ../lib};
 use JavaScript::Minifier qw/minify/;
 

@@ -33,7 +33,7 @@ sub filesMatch {
 
 sub minTest {
   my $filename = shift;
-  
+
   open(INFILE, 't/scripts/' . $filename . '.js') or die("couldn't open file");
   open(GOTFILE, '>t/scripts/' . $filename . '-got.js') or die("couldn't open file");
     minify(input => *INFILE, outfile => *GOTFILE);
