@@ -1,5 +1,8 @@
 Revision history for Perl extension JavaScript::Minifier.
 
+1.12  2014-10-04
+    - Fixed Issue #3 (warnings for empty files)
+
 1.11  2014-01-30
     - Added my dzil author plugin bundle and fixed up some packaging issues
 

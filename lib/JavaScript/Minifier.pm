@@ -342,7 +342,7 @@ sub minify {
     }
   }
 
-  if ( $s->{last_read_char} =~ /\n/ ) {
+  if ( defined $s->{last_read_char} and $s->{last_read_char} =~ /\n/ ) {
     _put($s, "\n");
   }
 
@@ -422,6 +422,10 @@ Zoffix Znet C<< <zoffix@cpan.org> >> L<https://metacpan.org/author/ZOFFIX>
 
 Peter Michaux, E<lt>petermichaux@gmail.comE<gt>
 Eric Herrera, E<lt>herrera@10east.comE<gt>
+
+=head1 CONTRIBUTORS
+
+Miller 'tmhall' Hall (bug fixes)
 
 =head1 COPYRIGHT AND LICENSE
 
