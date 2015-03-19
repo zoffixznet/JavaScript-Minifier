@@ -424,11 +424,13 @@ Zoffix Znet C<< <zoffix@cpan.org> >> L<https://metacpan.org/author/ZOFFIX>
 =head1 AUTHORS
 
 Peter Michaux, E<lt>petermichaux@gmail.comE<gt>
+
 Eric Herrera, E<lt>herrera@10east.comE<gt>
 
 =head1 CONTRIBUTORS
 
 Miller 'tmhall' Hall
+
 Вячеслав 'vti' Тихановский
 
 =head1 COPYRIGHT AND LICENSE
