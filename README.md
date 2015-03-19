@@ -7,11 +7,14 @@ JavaScript::Minifier - Perl extension for minifying JavaScript code
 To minify a JavaScript file and have the output written directly to another file
 
     use JavaScript::Minifier qw(minify);
-    open(INFILE, 'myScript.js') or die;
-    open(OUTFILE, '>myScript-min.js') or die;
-    minify(input => *INFILE, outfile => *OUTFILE);
-    close(INFILE);
-    close(OUTFILE);
+
+    open(my $in, 'myScript.js') or die;
+    open(my $out, '>', 'myScript-min.js') or die;
+
+    minify(input => $in, outfile => $out);
+
+    close($in);
+    close($out);
 
 To minify a JavaScript string literal. Note that by omitting the outfile parameter a the minified code is returned as a string.
 
@@ -61,6 +64,11 @@ Zoffix Znet `<zoffix@cpan.org>` [https://metacpan.org/author/ZOFFIX](https://met
 
 Peter Michaux, <petermichaux@gmail.com>
 Eric Herrera, <herrera@10east.com>
+
+# CONTRIBUTORS
+
+Miller 'tmhall' Hall
+Вячеслав 'vti' Тихановский
 
 # COPYRIGHT AND LICENSE
 
