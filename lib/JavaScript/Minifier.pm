@@ -357,7 +357,7 @@ __END__
 
 =encoding utf8
 
-=for stopwords Crockford ECMAScript JSMin stripDebug
+=for stopwords Crockford ECMAScript JSMin stripDebug Minifying minification minifying minified minify
 
 =head1 NAME
 
