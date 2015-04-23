@@ -379,7 +379,7 @@ To minify a JavaScript file and have the output written directly to another file
 
 To minify a JavaScript string literal. Note that by omitting the outfile parameter a the minified code is returned as a string.
 
-  my minifiedJavaScript = minify(input => 'var x = 2;');
+  my $minifiedJavaScript = minify(input => 'var x = 2;');
 
 To include a copyright comment at the top of the minified code.
 

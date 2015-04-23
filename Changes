@@ -1,5 +1,8 @@
 Revision history for Perl extension JavaScript::Minifier.
 
+1.14 2015-04-23
+    - Fixed error in SYNOPSIS
+
 1.13  2015-03-19
     [Changes by vti]
     - Fixed Issue #4 (Error in the docs)
