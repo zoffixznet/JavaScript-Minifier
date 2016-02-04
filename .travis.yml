@@ -1,0 +1,22 @@
+language: perl
+perl:
+    - "5.22"
+    - "5.20"
+    - "5.18"
+    - "5.16"
+    - "5.14"
+    - "5.12"
+    - "5.10"
+
+install:
+    - cpanm -q -n --skip-satisfied Dist::Zilla
+    - dzil authordeps --missing | cpanm -q -n
+    - dzil listdeps --missing | cpanm -q -n
+
+script:
+    - dzil smoke --release --author
+
+after_success:
+    - cpanm -q -n --skip-satisfied Devel::Cover::Report::Coveralls
+    - cpanm -q -n --skip-satisfied Dist::Zilla::App::Command::cover
+    - dzil cover -outputdir cover_db -report coveralls
