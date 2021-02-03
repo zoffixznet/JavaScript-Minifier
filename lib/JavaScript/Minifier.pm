@@ -9,6 +9,9 @@ require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw(minify);
 
+# string 'return' as array to handle special case of returning a regexp from a function
+my @return = qw(r e t u r n);
+
 #return true if the character is allowed in identifier.
 sub isAlphanum {
   return ($_[0] =~ /[\w\$\\]/ || ord($_[0]) > 126);
@@ -225,6 +228,8 @@ sub minify {
   $s->{b} = _get($s);
   $s->{c} = _get($s);
   $s->{d} = _get($s);
+  $s->{return_flag} = 0;
+  $s->{return_string} = '';
   $s->{last} = undef; # assign for safety
   $s->{lastnws} = undef; # assign for safety
 
@@ -235,6 +240,12 @@ sub minify {
 
     if (isWhitespace($s->{a})) { # check that this program is running correctly
       die 'minifier bug: minify while loop starting with whitespace, stopped';
+    }
+
+    # track 'return' operator
+    if ($s->{a} ne '/') {
+        $s->{return_flag} = defined($return[length($s->{return_string})]) && $s->{a} eq $return[length($s->{return_string})];
+        $s->{return_string} = $s->{return_flag} ? $s->{return_string} . $s->{a} : '';
     }
 
     # Each branch handles trailing whitespace and ensures $s->{a} is on non-whitespace or undef when branch finishes
@@ -292,8 +303,9 @@ sub minify {
           die 'unterminated comment, stopped';
         }
       }
-      elsif (defined($s->{lastnws}) && ($s->{lastnws} eq ')' || $s->{lastnws} eq ']' ||
-                                        $s->{lastnws} eq '.' || isAlphanum($s->{lastnws}))) { # division
+      elsif ((defined($s->{lastnws}) && ($s->{lastnws} eq ')' || $s->{lastnws} eq ']' ||
+                                        $s->{lastnws} eq '.' || isAlphanum($s->{lastnws}))) && (!$s->{return_flag} || length($s->{return_string}) != scalar(@return))) { # division
+
         action1($s);
         collapseWhitespace($s);
         # don't want a division to become a slash-slash comment with following conditional comment
