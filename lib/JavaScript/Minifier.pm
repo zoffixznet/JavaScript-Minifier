@@ -445,6 +445,8 @@ Miller 'tmhall' Hall
 
 Вячеслав 'vti' Тихановский
 
+Fedor A. 'faf' Fetisov
+
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (C) 2007 by Peter Michaux
