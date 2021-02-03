@@ -18,7 +18,7 @@ To minify a JavaScript file and have the output written directly to another file
 
 To minify a JavaScript string literal. Note that by omitting the outfile parameter a the minified code is returned as a string.
 
-    my minifiedJavaScript = minify(input => 'var x = 2;');
+    my $minifiedJavaScript = minify(input => 'var x = 2;');
 
 To include a copyright comment at the top of the minified code.
 
@@ -47,7 +47,7 @@ Exported by default: `minifiy()`
 This module is inspired by Douglas Crockford's JSMin:
 [http://www.crockford.com/javascript/jsmin.html](http://www.crockford.com/javascript/jsmin.html)
 
-You may also be interested in the [CSS::Minifier](https://metacpan.org/pod/CSS::Minifier) module also
+You may also be interested in the [CSS::Minifier](https://metacpan.org/pod/CSS%3A%3AMinifier) module also
 available on CPAN.
 
 # REPOSITORY
@@ -63,12 +63,16 @@ Zoffix Znet `<zoffix@cpan.org>` [https://metacpan.org/author/ZOFFIX](https://met
 # AUTHORS
 
 Peter Michaux, <petermichaux@gmail.com>
+
 Eric Herrera, <herrera@10east.com>
 
 # CONTRIBUTORS
 
 Miller 'tmhall' Hall
+
 Вячеслав 'vti' Тихановский
+
+Fedor A. 'faf' Fetisov
 
 # COPYRIGHT AND LICENSE
 
